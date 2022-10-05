@@ -3,6 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import headerImg from '../../assets/img/header-img.svg';
 import './Banner.css';
+import 'animate.css';
+import TrackVisibility from 'react-on-screen';
 
 export default function Banner() {
     const [loopNum, setLoopNum] = useState(0);
@@ -46,10 +48,15 @@ export default function Banner() {
             <Container>
                 <Row className="align-items-center">
                     <Col xs={12} md={6} xl={7}>
-                        <span className='tagline'>Welcome to my Portfolio</span>
-                        <h1>{`Hi I'm  webdecoded `}<span className='wrap'>{text}</span></h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid commodi maxime cum placeat illo iste quidem quibusdam officia, est debitis voluptatum asperiores odit tempore temporibus nesciunt magnam repellat sed nostrum.</p>
-                        <buttom onClick={() => console.log('connected')}>Let's connect<ArrowRightCircle size={25}/></buttom>
+                        <TrackVisibility>
+                        {({ isVisible }) => 
+                            <div className={isVisible ? "animated__animated animate__fadeIn" : ""}>
+                                <span className='tagline'>Welcome to my Portfolio</span>
+                                <h1>{`Hi I'm  webdecoded `}<span className='wrap'>{text}</span></h1>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid commodi maxime cum placeat illo iste quidem quibusdam officia, est debitis voluptatum asperiores odit tempore temporibus nesciunt magnam repellat sed nostrum.</p>
+                                <buttom onClick={() => console.log('connected')}>Let's connect<ArrowRightCircle size={25}/></buttom>
+                            </div>}
+                        </TrackVisibility>
                     </Col>
                     <Col xs={12} md={6} xl={7}>
                         <img src={headerImg} alt='Headder img'/>
